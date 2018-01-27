@@ -61,7 +61,7 @@ def combine_historyData(output_path,Data_Dir):
     trade_days = trade_days.loc[(trade_days >= start_day) & (trade_days <= end_day) ]
     df = pd.DataFrame()
     for datenum in trade_days:
-        print datenum
+        print (datenum)
         df = getDfFromDir(datenum,Data_Dir)
         #pdb.set_trace()
         if os.path.isfile(output_path):
@@ -294,7 +294,7 @@ if __name__ == '__main__':
     for i,code in enumerate(SCodes[:]):
 
 #        SecuCode = '000001.SZ'
-        print 15*'-',i,'-',code,15*'-'
+        print( 15*'-',i,'-',code,15*'-')
         df_pivot = getNearDayDf(df_close,code)
 #        df_feature = df_feature.append(df_pivot)
         df_feature = df_pivot.copy()
@@ -339,21 +339,21 @@ if __name__ == '__main__':
 
         y_pred = dt_stump.predict(X_test)
         cnf_matrix = confusion_matrix(y_test, y_pred)
-        print 'score_train:',score_train,'score_test:',score_test,'TN-ratio:',y_test.mean(),'Gain:',score_test - y_test.mean()
-        print 'cnf_matrix:'
-        print cnf_matrix
+        print( 'score_train:',score_train,'score_test:',score_test,'TN-ratio:',y_test.mean(),'Gain:',score_test - y_test.mean())
+        print( 'cnf_matrix:')
+        print( cnf_matrix)
 
 #----------------------------输出特征重要性-----------------------
-        print 'dt importance:'
+        print( 'dt importance:')
         df_impt_dt = pd.DataFrame(zip(df_feature.columns,dt_stump_importance),columns=['featrue','importance'])
         df_impt_dt = df_impt_dt.sort_values(by=['importance'],ascending=[0])
-        print df_impt_dt
+        print( df_impt_dt)
 
 #        y_prob = dt_stump.predict_proba(X_test)
 
-        print 'rdf importance martix:'
+        print( 'rdf importance martix:')
         df_impt_rdf = get_feat_importance(X_train,X_test,df_feature.columns)
-        print df_impt_rdf
+        print( df_impt_rdf)
 #----------------------------输出特征重要性-----------------------
 
         sr =pd.Series()
@@ -398,7 +398,7 @@ if __name__ == '__main__':
 #    df_result = df_result.sort_values(by=['erro_rate','score_test'],ascending=[0,0])
     df_result = df_result.sort_values(by=['erro_rate'],ascending=[0])
 #    df_result = df_result.sort_values(by=['score_test'],ascending=[0])
-    print df_result
+    print( df_result)
     pdb.set_trace()
 
 
